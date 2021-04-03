@@ -3,18 +3,18 @@ const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: ''
   },
-  devtool: "eval-cheap-module-source-map",
   devServer: {
     inline: false,
     contentBase: "./dist",
   },
+  devtool: 'none',
   module: {
     rules: [
       {
@@ -34,10 +34,8 @@ module.exports = {
             }
           } },
           { loader: 'postcss-loader', options: {
-            postcssOptions: {
-              ident: 'postcss',
-              plugins: () => [autoprefixer()]
-            }
+            ident: 'postcss',
+            plugins: () => [autoprefixer()]
           } }
         ]
       },
